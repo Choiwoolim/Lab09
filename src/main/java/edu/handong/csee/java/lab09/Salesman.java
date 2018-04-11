@@ -3,7 +3,7 @@ package edu.handong.csee.java.lab09;	//package name
 /**
  * This method is setting sales man.
  * Salesman have getmName(), setmName, getSales(), setSales() method.
- * 
+ * Thank you.
  * @author CUL
  *
  */

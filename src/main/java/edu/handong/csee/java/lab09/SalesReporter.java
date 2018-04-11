@@ -50,7 +50,7 @@ public class SalesReporter {		//This class name is SalesREporter
 	 * main method control other method.
 	 * @param args is implemented.
 	 */
-	public static void main(String[] args) {		//This method is main method.
+	public static void main(String[] args) {				//This method is main method.
 		SalesReporter myReporter = new SalesReporter();		//Declare the SalesReporter method.
 		myReporter.getData();								//Execute getData method.
 		myReporter.calculateAverageSales();					//Execute calculateAverageSales method.
@@ -136,7 +136,7 @@ public class SalesReporter {		//This class name is SalesREporter
 				System.out.println("Sales: " + team[i].getSales());		//print Sales.
 			}			
 		}
-		
+
 		System.out.println("The other sales guy");	//print other sales. 
 
 		for(int i=0; i<team.length; i++) {		//loop
