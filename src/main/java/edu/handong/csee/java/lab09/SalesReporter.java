@@ -19,7 +19,7 @@ public class SalesReporter {		//This class name is SalesREporter
 	//	private Salesman[] team;		//Declare Salesman method.
 	private int numOfSalesman;		//Declare the integer type variable.
 
-	private ArrayList<Salesman> team = new ArrayList<Salesman>();
+	private ArrayList<Salesman> team = new ArrayList<Salesman>();	//Using arraylist
 
 
 	/**
@@ -75,11 +75,11 @@ public class SalesReporter {		//This class name is SalesREporter
 
 
 		//		for(int i=0; i<numOfSalesman; i++) {		//Loop (not use)
-		boolean getData = true;
+		boolean getData = true;							//boolean type getData Declare
 
 		Scanner myScanner = new Scanner(System.in);			//Scanning
 
-		while(getData) {
+		while(getData) {			//Loop
 			//			System.out.println("Enter data for associate number " + (i+1));		//print the following sentence. (not use)
 
 			System.out.println("Enter name: ");		//Print the following sentence.
@@ -94,21 +94,21 @@ public class SalesReporter {		//This class name is SalesREporter
 
 			//			team[i] = mySalesman;					//setting (not use)
 
-			Salesman people = new Salesman();
-			people.setmName(name);
-			people.setSales(sales);
+			Salesman people = new Salesman();			//Declare the Salesman method(ArrayList)
+			people.setmName(name);						//set the arraylist(name)
+			people.setSales(sales);						//set the arraylist(sales)
 
-			team.add(people);
+			team.add(people);							//push the name and people
 
-			String line_remove = myScanner.nextLine();
+			String line_remove = myScanner.nextLine();	//the space eraser
 
-			System.out.println("More data for the team?");
-			String answer = myScanner.nextLine();
+			System.out.println("More data for the team?");		//print following sentence.
+			String answer = myScanner.nextLine();				//Scanning
 
-			if(answer.equals("yes"))
-				getData = true;
-			else
-				getData = false;
+			if(answer.equals("yes"))			//continue's condition
+				getData = true;					//continue 
+			else								//exit's condition
+				getData = false;				//exit
 		}		
 	}
 
@@ -122,7 +122,7 @@ public class SalesReporter {		//This class name is SalesREporter
 		double sum = 0;		//declare the double type variable and setting a 0.
 
 		//		for(int i=0; i<team.length; i++) {		//Loop (not use)
-		for(Salesman people : team) {
+		for(Salesman people : team) {		//Loop all arraylist
 
 			//			double sales = team[i].getSales();	//Sales set person's sale 			(not use)
 
@@ -145,9 +145,9 @@ public class SalesReporter {		//This class name is SalesREporter
 			}			not use
 		 */				
 
-		for(Salesman people : team) {
-			if(highestSales < people.getSales())
-				highestSales = people.getSales();
+		for(Salesman people : team) {			//Loop all arraylist
+			if(highestSales < people.getSales())	//Find the highestsales.
+				highestSales = people.getSales();	//Highestsales setting.
 		}
 	}
 
