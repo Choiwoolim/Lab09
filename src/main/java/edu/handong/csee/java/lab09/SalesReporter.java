@@ -1,6 +1,8 @@
 package edu.handong.csee.java.lab09;	//package name
 
 import java.util.Scanner;	//Use scanning
+import java.util.ArrayList;
+
 
 /**
  * This class is SalesReporter class.
@@ -14,29 +16,34 @@ public class SalesReporter {		//This class name is SalesREporter
 
 	private double highestSales;	//Declare the double type variable.(highestSales)
 	private double averageSales;	//Declare the double type variable.(averageSales)
-	private Salesman[] team;		//Declare Salesman method.
+	//	private Salesman[] team;		//Declare Salesman method.
 	private int numOfSalesman;		//Declare the integer type variable.
+
+	private ArrayList<Salesman> team = new ArrayList<Salesman>();
+
 
 	/**
 	 * Sales Reporter is Sales amount.
 	 * So, You can get the number of people you sold.
 	 */
-	public SalesReporter() {			//method name is SalesReporter
+	/*	public SalesReporter() {			//method name is SalesReporter
 		System.out.println("Enter number of salesman");		//print the following sentence
 		Scanner myScanner = new Scanner(System.in);			// SCANNING
 
 		numOfSalesman = myScanner.nextInt();				//We get input on how many people we sold.
 	}
+	 */ //not use
 
 	/**
 	 * This method is executed if input values exist in the program.
 	 * SalesReporter(int num) set a numOfSalesman.
 	 * @param num is already set in program.
 	 */
-	public SalesReporter(int num) {		//method name is SalesReporter and input variable name is num.
+	/*
+	 * 	public SalesReporter(int num) {		//method name is SalesReporter and input variable name is num.
 		numOfSalesman = num;			//numOfSalesman assign num.
-	}
-
+	}				not use
+	 */
 	/**
 	 * This method is print next sentence.
 	 * method isn't use the main method.
@@ -64,13 +71,16 @@ public class SalesReporter {		//This class name is SalesREporter
 	 * 
 	 */
 	public void getData() {			//This method name is getData.
-		team = new Salesman[numOfSalesman];			//instantiate the team.
+		//		team = new Salesman[numOfSalesman];			//instantiate the team. (not use)
 
 
-		for(int i=0; i<numOfSalesman; i++) {		//Loop
-			Scanner myScanner = new Scanner(System.in);			//Scanning
+		//		for(int i=0; i<numOfSalesman; i++) {		//Loop (not use)
+		boolean getData = true;
 
-			System.out.println("Enter data for associate number " + (i+1));		//print the following sentence.
+		Scanner myScanner = new Scanner(System.in);			//Scanning
+
+		while(getData) {
+			//			System.out.println("Enter data for associate number " + (i+1));		//print the following sentence. (not use)
 
 			System.out.println("Enter name: ");		//Print the following sentence.
 			String name = myScanner.nextLine();		//name sets input value.
@@ -78,11 +88,27 @@ public class SalesReporter {		//This class name is SalesREporter
 			System.out.println("Enter Sales: $");	//Print the following sentence.
 			double sales = myScanner.nextDouble();	//sales set input value.
 
-			Salesman mySalesman = new Salesman();	//Declare the Salesman method.
-			mySalesman.setmName(name);				//set the array (name)
-			mySalesman.setSales(sales);				//set the array (sales)
+			//			Salesman mySalesman = new Salesman();	//Declare the Salesman method. (not use)
+			//			mySalesman.setmName(name);				//set the array (name)   	(not use)
+			//			mySalesman.setSales(sales);				//set the array (sales)		(not use)
 
-			team[i] = mySalesman;					//setting
+			//			team[i] = mySalesman;					//setting (not use)
+
+			Salesman people = new Salesman();
+			people.setmName(name);
+			people.setSales(sales);
+
+			team.add(people);
+
+			String line_remove = myScanner.nextLine();
+
+			System.out.println("More data for the team?");
+			String answer = myScanner.nextLine();
+
+			if(answer.equals("yes"))
+				getData = true;
+			else
+				getData = false;
 		}		
 	}
 
@@ -95,13 +121,15 @@ public class SalesReporter {		//This class name is SalesREporter
 
 		double sum = 0;		//declare the double type variable and setting a 0.
 
-		for(int i=0; i<team.length; i++) {		//Loop
+		//		for(int i=0; i<team.length; i++) {		//Loop (not use)
+		for(Salesman people : team) {
 
-			double sales = team[i].getSales();	//Sales set person's sale
-			sum = sum + sales;					//Calculate the sum of sales.
+			//			double sales = team[i].getSales();	//Sales set person's sale 			(not use)
+
+			sum = sum + people.getSales();					//Calculate the sum of sales.
 		}
 
-		averageSales = sum/numOfSalesman;		//averageSales is sum/number of person
+		averageSales = sum/team.size();		//averageSales is sum/number of person
 	}
 
 	/**
@@ -110,12 +138,16 @@ public class SalesReporter {		//This class name is SalesREporter
 	 */
 	public void calculatehighestSales() {		//method name is calculatehighestSales.
 
-		for(int i =0; i < team.length-1; i++) {		//Loop
+		/*		for(int i =0; i < team.length-1; i++) {		//Loop		(not use)
 
 			if(team[i].getSales() < team[i+1].getSales()) { //find the highestsales.
 				highestSales = team[i+1].getSales();		//highest sales setting.
-			}
+			}			not use
+		 */				
 
+		for(Salesman people : team) {
+			if(highestSales < people.getSales())
+				highestSales = people.getSales();
 		}
 	}
 
@@ -130,19 +162,23 @@ public class SalesReporter {		//This class name is SalesREporter
 
 		System.out.println("The Highest sales guy");		//Who is highest person?
 
-		for(int i=0; i<team.length; i++) {			//find highest person
-			if(team[i].getSales() == highestSales) {	//if person's sales value is highest sales.
-				System.out.println("Name: " + team[i].getmName());		//print Name.
-				System.out.println("Sales: " + team[i].getSales());		//print Sales.
+		//		for(int i=0; i<team.length; i++) {			//find highest person
+
+		for(Salesman people : team) {
+			if(people.getSales() == highestSales) {	//if person's sales value is highest sales.
+				System.out.println("Name: " + people.getmName());		//print Name.
+				System.out.println("Sales: " + people.getSales());		//print Sales.
 			}			
 		}
 
 		System.out.println("The other sales guy");	//print other sales. 
 
-		for(int i=0; i<team.length; i++) {		//loop
-			if(team[i].getSales() != highestSales) {	//highest sales is already printed.
-				System.out.println("Name: " + team[i].getmName());	//print other name.
-				System.out.println("Sales: " + team[i].getSales());	//print other sales.
+		//		for(int i=0; i<team.length; i++) {		//loop 			(not use)
+
+		for(Salesman people : team) {
+			if(people.getSales() != highestSales) {	//highest sales is already printed.
+				System.out.println("Name: " + people.getmName());	//print other name.
+				System.out.println("Sales: " + people.getSales());	//print other sales.
 			}
 		}
 	}
